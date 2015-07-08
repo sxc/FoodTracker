@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8121.20" systemVersion="15A204h" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8101.16"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -24,7 +25,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="87" height="21"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" placeholderIntrinsicWidth="130" placeholderIntrinsicHeight="30" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter meal name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rDU-9C-o0y">
@@ -37,6 +38,9 @@
                                         <rect key="frame" x="0.0" y="75" width="155" height="30"/>
                                         <animations/>
                                         <state key="normal" title="Set Default Label Text "/>
+                                        <connections>
+                                            <action selector="setDefaultLabelText:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ve1-cq-0Ij"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <animations/>
@@ -45,19 +49,46 @@
                                     <constraint firstAttribute="trailing" secondItem="rDU-9C-o0y" secondAttribute="trailing" id="joi-Ho-iw0"/>
                                 </constraints>
                             </stackView>
+                            <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="diR-hg-rbq">
+                                <rect key="frame" x="20" y="205" width="320" height="320"/>
+                                <animations/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="diR-hg-rbq" secondAttribute="height" multiplier="1:1" id="eU5-1Y-94F"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="PWT-jK-iTb" appends="YES" id="hBq-jW-sT3"/>
+                                </connections>
+                            </imageView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="diR-hg-rbq" secondAttribute="trailing" id="0lh-qD-efm"/>
+                            <constraint firstItem="diR-hg-rbq" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="24L-Od-Smk"/>
                             <constraint firstItem="Exr-IH-oKh" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="K5w-nG-j4w"/>
                             <constraint firstItem="Exr-IH-oKh" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="XfU-Uq-RRk"/>
                             <constraint firstItem="Exr-IH-oKh" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="60" id="hCH-u2-FRZ"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mealNameLabel" destination="ucH-SS-8bU" id="LTc-WV-zff"/>
+                        <outlet property="nameTextField" destination="rDU-9C-o0y" id="3Ey-Pq-Y24"/>
+                        <outlet property="photoImageView" destination="diR-hg-rbq" id="qyb-3m-7uB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="PWT-jK-iTb">
+                    <pressTypeMask key="allowedPressTypes"/>
+                    <connections>
+                        <action selector="selectImageFromPhotoLibrary:" destination="BYZ-38-t0r" id="cYe-VB-7Gf"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="275" y="297"/>
+            <point key="canvasLocation" x="52" y="256"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="defaultPhoto" width="540" height="540"/>
+    </resources>
 </document>
